@@ -4,6 +4,8 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 
 import java.util.HashMap;
+import java.util.Optional;
+import java.util.Set;
 
 public class HashSideBar
 {
@@ -40,6 +42,32 @@ public class HashSideBar
         return this;
     }
 
+
+    /**
+     * Add a line on the top of the sidebar.
+     * @param value The value of the new line.
+     * @return The sidebar itself.
+     */
+    public HashSideBar addLine(String value)
+    {
+        StringBuilder valueBuilder = new StringBuilder().append(value);
+        Set<Integer> keySet = null;
+        int index = 0;
+
+        if (!this.lines.isEmpty()) {
+            keySet = this.lines.keySet();
+            for (Integer key : keySet) {
+                if (this.lines.get(key).contentEquals(valueBuilder))
+                    valueBuilder.append(" ");
+                if (key > index)
+                    index = key;
+            }
+        }
+
+        this.setLine(index + 1, valueBuilder.toString());
+        return this;
+    }
+
     /**
      * Set a line in the sidebar.
      * @param index The index of the line.
@@ -53,14 +81,82 @@ public class HashSideBar
         if (this.board != null)
             this.updateSideBarLine(index, previousValue, value);
 
-        if (previousValue == null) {
-            this.lines.put(index, value);
-        } else {
-            this.lines.put(index, value);
-        }
+        this.lines.put(index, value);
 
         return this;
     }
+
+    /**
+     * Set multiple lines to the same value in the sidebar.
+     * @param value The value of the line
+     * @param indexes The indexes.
+     * @return The sidebar itself.
+     */
+    public HashSideBar setLines(String value, int... indexes)
+    {
+        StringBuilder spaces = new StringBuilder();
+
+        for (int index : indexes) {
+            this.setLine(index, value + spaces);
+            spaces.append(" ");
+        }
+        return this;
+
+    }
+
+    /**
+     * Set the lines between `from` and `to` to value.
+     * @param value The value to set to the lines.
+     * @param from The start of the filling.
+     * @param to The end of the filling.
+     * @return The sidebar itself.
+     */
+    public HashSideBar fillLines(String value, int from, int to)
+    {
+        int[] indexes = this.getIndexes(from, to, false);
+
+        this.setLines(value, indexes);
+        return this;
+    }
+
+    /**
+     * Remove a line from the sidebar.
+     * @param index The index of the line.
+     * @return The sidebar itself.
+     */
+    public HashSideBar removeLine(int index)
+    {
+        if (this.lines.containsKey(index))
+            this.board.getScoreboard().resetScores(this.lines.remove(index));
+        return this;
+    }
+
+    /**
+     * Remove multiple lines from the sidebar.
+     * @param indexes The indexes of the lines to remove from the sidebar.
+     * @return The sidebar itself.
+     */
+    public HashSideBar removeLines(int... indexes)
+    {
+        for (int index : indexes)
+            this.removeLine(index);
+        return this;
+    }
+
+    /**
+     * Remove the lines in the range from `from` to `to`.
+     * @param from The start of the clearing.
+     * @param to The end of the clearing.
+     * @return The sidebar itself.
+     */
+    public HashSideBar clearLines(int from, int to)
+    {
+        int[] indexes = this.getIndexes(from, to, true);
+
+        this.removeLines(indexes);
+        return this;
+    }
+
 
     /**
      * @param board The board.
@@ -91,6 +187,29 @@ public class HashSideBar
         if (previousValue != null)
             this.board.getScoreboard().resetScores(previousValue);
         this.objective.getScore(newValue).setScore(index);
+    }
+
+
+    /**
+     * Get the indexes from `from` to `to` in an array.
+     * @param from The start of the indexes
+     * @param to The end of the indexes
+     * @return The indexes in an array
+     */
+    private int[] getIndexes(int from, int to, boolean checkIndex)
+    {
+        int min = Math.min(from, to);
+        int max = Math.max(from, to);
+        int index = 0;
+        final int[] indexes = new int[max - min];
+
+        for (int i = 0; i < indexes.length; i++) {
+            index = max - i;
+            if (!checkIndex || this.lines.containsKey(index))
+                indexes[i] = index;
+        }
+
+        return indexes;
     }
 
 }

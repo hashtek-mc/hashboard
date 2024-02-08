@@ -30,7 +30,7 @@ public class HashTabList
      * @param players The list of players to update the tablist to.
      * @throws StrangeException If the impossible happen. (See the exception message)
      */
-    public void update(Collection<Player> players)
+    public void update(Collection<? extends Player> players)
         throws StrangeException
     {
         this.update(players.toArray(new Player[0]));
