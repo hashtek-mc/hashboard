@@ -7,6 +7,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
 
 public class HashBoard
 {
@@ -25,6 +26,7 @@ public class HashBoard
         this.scoreboard = manager.getNewScoreboard();
         this.sideBar = null;
     }
+
 
     /**
      * Remove the team from the scoreboard
@@ -61,6 +63,15 @@ public class HashBoard
     {
         for (Player player : players)
             player.setScoreboard(scoreboard);
+    }
+
+    /**
+     * Set the scoreboard to a list of player.
+     * @param players The list of player to add the scoreboard to.
+     */
+    public void setToPlayers(Collection<? extends Player> players)
+    {
+        this.setToPlayers(players.toArray(new Player[0]));
     }
 
     /**
