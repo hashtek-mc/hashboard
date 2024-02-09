@@ -189,7 +189,6 @@ public class HashSideBar
         this.objective.getScore(newValue).setScore(index);
     }
 
-
     /**
      * Get the indexes from `from` to `to` in an array.
      * @param from The start of the indexes

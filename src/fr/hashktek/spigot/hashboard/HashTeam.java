@@ -142,6 +142,15 @@ public class HashTeam
     }
 
     /**
+     * Get the number of players currently present in the team.
+     * @return The number of players currently present in the team.
+     */
+    public int getLength()
+    {
+        return this.getPlayersUUID().size();
+    }
+
+    /**
      * Get the prefix of the team.
      * @return The prefix of the team.
      */
