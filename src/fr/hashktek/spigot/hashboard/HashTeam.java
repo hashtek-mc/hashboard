@@ -1,14 +1,12 @@
 package fr.hashktek.spigot.hashboard;
 
 import fr.hashktek.spigot.hashboard.exceptions.AlreadyInTeamException;
-import fr.hashktek.spigot.hashboard.exceptions.NotInTeamException;
 import fr.hashktek.spigot.hashboard.exceptions.StrangeException;
 import fr.hashktek.spigot.hashboard.exceptions.TeamSizeException;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Team;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class HashTeam
@@ -16,7 +14,7 @@ public class HashTeam
 
     private Team boardTeam;
 
-    private final List<UUID> playersUUID;
+    private final ArrayList<UUID> playersUUID;
 
     private final String tablistPriority;
 
@@ -71,9 +69,9 @@ public class HashTeam
     {
         UUID playerUUID = player.getUniqueId();
 
-        if (playersUUID.size() == teamSize)
+        if (this.getLength() == teamSize)
             throw new TeamSizeException("The team '" + this.tablistPriority + "' is full.");
-        else if (playersUUID.size() > teamSize)
+        else if (this.getLength() > teamSize)
             throw new StrangeException("The team '" + this.tablistPriority + "' is more than full. (WTF ?)");
 
         if (this.has(playerUUID))
@@ -88,19 +86,13 @@ public class HashTeam
     /**
      * Remove a player from the team.
      * @param player The player to remove from the team.
-     * @throws NotInTeamException If the player is not in the team.
      */
-    public void remove(Player player) throws NotInTeamException
+    public void remove(Player player)
     {
         UUID playerUUID = player.getUniqueId();
 
-        if (!this.has(playerUUID))
-            throw new NotInTeamException(
-                "The player with UUID '" + playerUUID + "' is not in the team."
-            );
-
-        this.playersUUID.remove(playerUUID);
-        this.boardTeam.removeEntry(player.getName());
+        if (this.playersUUID.remove(playerUUID))
+            this.boardTeam.removeEntry(player.getName());
     }
 
     /**
@@ -136,7 +128,7 @@ public class HashTeam
      * Get the UUID of the players present in the team.
      * @return The list of UUID of the players present in the team.
      */
-    public List<UUID> getPlayersUUID()
+    public ArrayList<UUID> getPlayersUUID()
     {
         return this.playersUUID;
     }
