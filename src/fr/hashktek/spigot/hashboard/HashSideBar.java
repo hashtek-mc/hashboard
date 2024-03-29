@@ -157,6 +157,24 @@ public class HashSideBar
         return this;
     }
 
+    /**
+     * Removes every line in the sidebar.
+     *
+     * @return  The sidebar itself.
+     */
+    public HashSideBar flush()
+    {
+        int highestKey = 0;
+
+        for (int line : this.lines.keySet())
+            if (line > highestKey)
+                highestKey = line;
+
+        this.clearLines(0, highestKey);
+        this.lines.clear();
+        return this;
+    }
+
 
     /**
      * @param board The board.
