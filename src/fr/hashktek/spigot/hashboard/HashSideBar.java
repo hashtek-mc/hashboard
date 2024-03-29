@@ -18,8 +18,9 @@ public class HashSideBar
 
 
     /**
-     * Create a sidebar
-     * @param board The board where the sidebar will be set.
+     * Create a sidebar.
+     *
+     * @param   board   The board where the sidebar will be set.
      */
     public HashSideBar(HashBoard board)
     {
@@ -30,9 +31,10 @@ public class HashSideBar
 
 
     /**
-     * Set the title of the sidebar
-     * @param title The new title of the sidebar.
-     * @return The sidebar itself
+     * Set the title of the sidebar.
+     *
+     * @param   title   The new title of the sidebar.
+     * @return  The sidebar itself
      */
     public HashSideBar setTitle(String title)
     {
@@ -45,8 +47,9 @@ public class HashSideBar
 
     /**
      * Add a line on the top of the sidebar.
-     * @param value The value of the new line.
-     * @return The sidebar itself.
+     *
+     * @param   value   The value of the new line.
+     * @return  The sidebar itself.
      */
     public HashSideBar addLine(String value)
     {
@@ -70,9 +73,10 @@ public class HashSideBar
 
     /**
      * Set a line in the sidebar.
-     * @param index The index of the line.
-     * @param value The value of the line.
-     * @return The sidebar itself.
+     *
+     * @param   index   The index of the line.
+     * @param   value   The value of the line.
+     * @return  The sidebar itself.
      */
     public HashSideBar setLine(int index, String value)
     {
@@ -88,9 +92,10 @@ public class HashSideBar
 
     /**
      * Set multiple lines to the same value in the sidebar.
-     * @param value The value of the line
-     * @param indexes The indexes.
-     * @return The sidebar itself.
+     *
+     * @param   value   The value of the line
+     * @param   indexes The indexes.
+     * @return  The sidebar itself.
      */
     public HashSideBar setLines(String value, int... indexes)
     {
@@ -106,10 +111,11 @@ public class HashSideBar
 
     /**
      * Set the lines between `from` and `to` to value.
-     * @param value The value to set to the lines.
-     * @param from The start of the filling.
-     * @param to The end of the filling.
-     * @return The sidebar itself.
+     *
+     * @param   value   The value to set to the lines.
+     * @param   from    The start of the filling.
+     * @param   to      The end of the filling.
+     * @return  The sidebar itself.
      */
     public HashSideBar fillLines(String value, int from, int to)
     {
@@ -121,8 +127,9 @@ public class HashSideBar
 
     /**
      * Remove a line from the sidebar.
-     * @param index The index of the line.
-     * @return The sidebar itself.
+     *
+     * @param   index   The index of the line.
+     * @return  The sidebar itself.
      */
     public HashSideBar removeLine(int index)
     {
@@ -133,8 +140,9 @@ public class HashSideBar
 
     /**
      * Remove multiple lines from the sidebar.
-     * @param indexes The indexes of the lines to remove from the sidebar.
-     * @return The sidebar itself.
+     *
+     * @param   indexes The indexes of the lines to remove from the sidebar.
+     * @return  The sidebar itself.
      */
     public HashSideBar removeLines(int... indexes)
     {
@@ -145,9 +153,10 @@ public class HashSideBar
 
     /**
      * Remove the lines in the range from `from` to `to`.
-     * @param from The start of the clearing.
-     * @param to The end of the clearing.
-     * @return The sidebar itself.
+     *
+     * @param   from    The start of the clearing.
+     * @param   to      The end of the clearing.
+     * @return  The sidebar itself.
      */
     public HashSideBar clearLines(int from, int to)
     {
@@ -158,7 +167,7 @@ public class HashSideBar
     }
 
     /**
-     * Removes every line in the sidebar.
+     * Remove every line in the sidebar.
      *
      * @return  The sidebar itself.
      */
@@ -177,7 +186,7 @@ public class HashSideBar
 
 
     /**
-     * @param board The board.
+     * @param   board   The board.
      */
     protected void setBoard(HashBoard board)
     {
@@ -196,9 +205,9 @@ public class HashSideBar
     }
 
     /**
-     * @param index The index of the line to update.
-     * @param previousValue The previous value of the line.
-     * @param newValue The new value of the line.
+     * @param   index           The index of the line to update.
+     * @param   previousValue   The previous value of the line.
+     * @param   newValue        The new value of the line.
      */
     private void updateSideBarLine(int index, String previousValue, String newValue)
     {
@@ -209,9 +218,10 @@ public class HashSideBar
 
     /**
      * Get the indexes from `from` to `to` in an array.
-     * @param from The start of the indexes
-     * @param to The end of the indexes
-     * @return The indexes in an array
+     *
+     * @param   from    The start of the indexes
+     * @param   to      The end of the indexes
+     * @return  The indexes in an array
      */
     private int[] getIndexes(int from, int to, boolean checkIndex)
     {
