@@ -39,7 +39,7 @@ public class HashTeam
      * @param tablistPriority The priority of the team in the tablist.
      * @param prefix The prefix of the team.
      * @param suffix The suffix of the team.
-     * @param teamSize The team size. Set to 0 for no size.
+     * @param teamSize The team size. Set to 0 for an unlimited size.
      */
     public HashTeam(int tablistPriority, String prefix, String suffix, int teamSize)
     {
@@ -56,7 +56,7 @@ public class HashTeam
      * @param tablistPriority The priority of the team in the tablist.
      * @param prefix The prefix of the team.
      * @param suffix The suffix of the team.
-     * @param teamSize The team size.
+     * @param teamSize The team size. Set to 0 for an unlimited size.
      * @param board Required if you want to display the team of the player above his head
      */
     public HashTeam(int tablistPriority, String prefix, String suffix, int teamSize, HashBoard board)

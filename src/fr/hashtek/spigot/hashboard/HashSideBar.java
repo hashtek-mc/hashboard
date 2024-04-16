@@ -6,6 +6,22 @@ import org.bukkit.scoreboard.Objective;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * HashSideBar is a class that allow you to customize a sidebar (often called a scoreboard by the players).
+ * With this class, you can :
+ * <ul>
+ *  <li>{@link HashSideBar#HashSideBar(HashBoard) Create a new sidebar.}</li>
+ *  <li>{@link HashSideBar#addLine(String) Add a line to your sidebar.}</li>
+ *  <li>{@link HashSideBar#setLine(int, String) Set a line to your sidebar.}</li>
+ *  <li>{@link HashSideBar#setLines(String, int...) Set multiple lines to your sidebar.}</li>
+ *  <li>{@link HashSideBar#clearLines(int, int) Clear a range of line from your sidebar.}</li>
+ *  <li>{@link HashSideBar#fillLines(String, int, int) Fill a range of line to your sidebar.}</li>
+ *  <li>{@link HashSideBar#removeLine(int) Remove a line from your sidebar.}</li>
+ *  <li>{@link HashSideBar#removeLines(int...) Remove multiple lines from your sidebar.}</li>
+ *  <li>{@link HashSideBar#setTitle(String) Set the title of your sidebar.}</li>
+ *  <li>{@link HashSideBar#updateSideBarLine(int, String, String) Set the title of your sidebar.}</li>
+ * </ul>
+ */
 public class HashSideBar
 {
 
@@ -18,6 +34,7 @@ public class HashSideBar
 
     /**
      * Create a sidebar
+     *
      * @param board The board where the sidebar will be set.
      */
     public HashSideBar(HashBoard board)
@@ -30,6 +47,7 @@ public class HashSideBar
 
     /**
      * Set the title of the sidebar
+     *
      * @param title The new title of the sidebar.
      * @return The sidebar itself
      */
@@ -44,6 +62,7 @@ public class HashSideBar
 
     /**
      * Add a line on the top of the sidebar.
+     *
      * @param value The value of the new line.
      * @return The sidebar itself.
      */
@@ -69,6 +88,7 @@ public class HashSideBar
 
     /**
      * Set a line in the sidebar.
+     *
      * @param index The index of the line.
      * @param value The value of the line.
      * @return The sidebar itself.
@@ -87,6 +107,7 @@ public class HashSideBar
 
     /**
      * Set multiple lines to the same value in the sidebar.
+     *
      * @param value The value of the line
      * @param indexes The indexes.
      * @return The sidebar itself.
@@ -105,6 +126,7 @@ public class HashSideBar
 
     /**
      * Set the lines between `from` and `to` to value.
+     *
      * @param value The value to set to the lines.
      * @param from The start of the filling.
      * @param to The end of the filling.
@@ -120,6 +142,7 @@ public class HashSideBar
 
     /**
      * Remove a line from the sidebar.
+     *
      * @param index The index of the line.
      * @return The sidebar itself.
      */

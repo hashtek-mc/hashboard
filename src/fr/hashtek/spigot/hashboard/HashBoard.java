@@ -9,6 +9,14 @@ import org.bukkit.scoreboard.Team;
 import javax.annotation.Nullable;
 import java.util.Collection;
 
+/**
+ * HashBoard is a class that allow you to manage and customize:
+ * <ol>
+ *     <li>{@link HashTeam Teams}</li>
+ *     <li>{@link HashSideBar Sidebars}</li>
+ *     <li>{@link HashTabList Tablists}</li>
+ * </ol>
+ */
 public class HashBoard
 {
 
@@ -30,6 +38,7 @@ public class HashBoard
 
     /**
      * Remove the team from the scoreboard
+     *
      * @param hashTeam The team to unregister
      */
     public void unregisterTeam(HashTeam hashTeam)
@@ -39,6 +48,7 @@ public class HashBoard
 
     /**
      * Add the team to the scoreboard.
+     *
      * @param hashTeam The team to register
      * @return The team itself
      */
@@ -57,6 +67,7 @@ public class HashBoard
 
     /**
      * Set the scoreboard to a list of player.
+     *
      * @param players The list of player to add the scoreboard to.
      */
     public void setToPlayers(Player... players)
@@ -67,6 +78,7 @@ public class HashBoard
 
     /**
      * Set the scoreboard to a list of player.
+     *
      * @param players The list of player to add the scoreboard to.
      */
     public void setToPlayers(Collection<? extends Player> players)
@@ -76,6 +88,7 @@ public class HashBoard
 
     /**
      * Get the HashSideBar of the scoreboard.
+     *
      * @return The sidebar of the scoreboard.
      */
     public @Nullable HashSideBar getSideBar()
@@ -84,6 +97,8 @@ public class HashBoard
     }
 
     /**
+     * Set the sidebar of the scoreboard.
+     *
      * @param sideBar The sidebar to set to the scoreboard
      */
     protected void setSideBar(HashSideBar sideBar)
@@ -93,7 +108,9 @@ public class HashBoard
     }
 
     /**
-     * @return The scoreboard
+     * Get the scoreboard.
+     *
+     * @return the scoreboard.
      */
     protected Scoreboard getScoreboard()
     {
