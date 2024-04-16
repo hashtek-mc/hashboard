@@ -1,14 +1,24 @@
-package fr.hashktek.spigot.hashboard;
+package fr.hashtek.spigot.hashboard;
 
-import fr.hashktek.spigot.hashboard.exceptions.AlreadyInTeamException;
-import fr.hashktek.spigot.hashboard.exceptions.StrangeException;
-import fr.hashktek.spigot.hashboard.exceptions.TeamSizeException;
+import fr.hashtek.spigot.hashboard.exceptions.AlreadyInTeamException;
+import fr.hashtek.spigot.hashboard.exceptions.StrangeException;
+import fr.hashtek.spigot.hashboard.exceptions.TeamSizeException;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Team;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * HashTeam is a class that allow you to manage and customize teams.
+ * You can :
+ * <ol>
+ *     <li>{@link HashTeam#HashTeam(int, String, String, int, HashBoard) Create a team with a custom prefix/suffix/size to the team}</li>
+ *     <li>{@link HashTeam#add(Player) Add players to the team}</li>
+ *     <li>{@link HashTeam#remove(Player) Remove a player from the team}</li>
+ *     <li>{@link HashTeam#has(Player) Check if a player is in the team}</li>
+ * </ol>
+ */
 public class HashTeam
 {
 
@@ -25,10 +35,11 @@ public class HashTeam
 
     /**
      * Create a new team.
+     *
      * @param tablistPriority The priority of the team in the tablist.
      * @param prefix The prefix of the team.
      * @param suffix The suffix of the team.
-     * @param teamSize The team size.
+     * @param teamSize The team size. Set to 0 for an unlimited size.
      */
     public HashTeam(int tablistPriority, String prefix, String suffix, int teamSize)
     {
@@ -41,10 +52,11 @@ public class HashTeam
 
     /**
      * Create a new team.
+     *
      * @param tablistPriority The priority of the team in the tablist.
      * @param prefix The prefix of the team.
      * @param suffix The suffix of the team.
-     * @param teamSize The team size.
+     * @param teamSize The team size. Set to 0 for an unlimited size.
      * @param board Required if you want to display the team of the player above his head
      */
     public HashTeam(int tablistPriority, String prefix, String suffix, int teamSize, HashBoard board)
@@ -57,9 +69,9 @@ public class HashTeam
         this.setBoard(board);
     }
 
-
     /**
      * Add a player to the team.
+     *
      * @param player The player to add in the team
      * @throws AlreadyInTeamException If the player is already in the team.
      * @throws TeamSizeException If the team is full
@@ -69,10 +81,12 @@ public class HashTeam
     {
         UUID playerUUID = player.getUniqueId();
 
-        if (this.getLength() == teamSize)
-            throw new TeamSizeException("The team '" + this.tablistPriority + "' is full.");
-        else if (this.getLength() > teamSize)
-            throw new StrangeException("The team '" + this.tablistPriority + "' is more than full. (WTF ?)");
+        if (this.teamSize != 0) {
+            if (this.getLength() == this.teamSize && this.teamSize > 0)
+                throw new TeamSizeException("The team '" + this.tablistPriority + "' is full.");
+            else if (this.getLength() > this.teamSize && this.teamSize > 0)
+                throw new StrangeException("The team '" + this.tablistPriority + "' is more than full. (WTF ?)");
+        }
 
         if (this.has(playerUUID))
             throw new AlreadyInTeamException(
@@ -85,6 +99,7 @@ public class HashTeam
 
     /**
      * Remove a player from the team.
+     *
      * @param player The player to remove from the team.
      */
     public void remove(Player player)
@@ -97,6 +112,7 @@ public class HashTeam
 
     /**
      * Check if the team has a player.
+     *
      * @param player The player to check.
      * @return true if the player is found, otherwise false.
      */
@@ -107,6 +123,7 @@ public class HashTeam
 
     /**
      * Check if the team has a player.
+     *
      * @param playerUUID The player's UUID to check.
      * @return true if the player is found, otherwise false.
      */
@@ -117,6 +134,7 @@ public class HashTeam
 
     /**
      * Register the team to the scoreboard. (Required if you want to display the team above the player head)
+     *
      * @param board The board containing the scoreboard.
      */
     public void setBoard(HashBoard board)
@@ -126,6 +144,7 @@ public class HashTeam
 
     /**
      * Get the UUID of the players present in the team.
+     *
      * @return The list of UUID of the players present in the team.
      */
     public ArrayList<UUID> getPlayersUUID()
@@ -135,6 +154,7 @@ public class HashTeam
 
     /**
      * Get the number of players currently present in the team.
+     *
      * @return The number of players currently present in the team.
      */
     public int getLength()
@@ -144,6 +164,7 @@ public class HashTeam
 
     /**
      * Get the prefix of the team.
+     *
      * @return The prefix of the team.
      */
     public String getPrefix()
@@ -153,6 +174,7 @@ public class HashTeam
 
     /**
      * Get the suffix of the team.
+     *
      * @return The suffix of the team.
      */
     public String getSuffix()
@@ -162,6 +184,7 @@ public class HashTeam
 
     /**
      * Get the prefix of the team.
+     *
      * @return The prefix of the team. (Represented as a String, but it's a number)
      */
     public String getTablistPriority()
@@ -170,7 +193,9 @@ public class HashTeam
     }
 
     /**
-     * @return boardTeam
+     * Get the board of the team.
+     *
+     * @return the board of the team.
      */
     protected Team getBoardTeam()
     {

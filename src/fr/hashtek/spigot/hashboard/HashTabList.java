@@ -1,6 +1,6 @@
-package fr.hashktek.spigot.hashboard;
+package fr.hashtek.spigot.hashboard;
 
-import fr.hashktek.spigot.hashboard.exceptions.StrangeException;
+import fr.hashtek.spigot.hashboard.exceptions.StrangeException;
 import net.minecraft.server.v1_8_R3.ChatComponentText;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
@@ -9,6 +9,10 @@ import org.bukkit.entity.Player;
 import java.lang.reflect.Field;
 import java.util.Collection;
 
+/**
+ * HashTabList is a class that allow you to manage and customize a tablist.
+ * You can only customize the header and the footer.
+ */
 public class HashTabList
 {
 
@@ -18,7 +22,7 @@ public class HashTabList
 
 
     /**
-     * Create a custom tablist header and footer.
+     * Create a tablist with a custom header and a custom footer.
      */
     public HashTabList()
     {
@@ -27,6 +31,7 @@ public class HashTabList
 
     /**
      * Update the tablist of the players.
+     *
      * @param players The list of players to update the tablist to.
      * @throws StrangeException If the impossible happen. (See the exception message)
      */
@@ -38,6 +43,7 @@ public class HashTabList
 
     /**
      * Update the tablist of the players.
+     *
      * @param players The list of players to update the tablist to.
      * @throws StrangeException If the impossible happen. (See the exception message)
      */
@@ -58,6 +64,7 @@ public class HashTabList
 
     /**
      * Set a new header to the tablist. (Require an update to see the changes)
+     *
      * @param header The new header text.
      */
     public void setHeader(String header)
@@ -67,6 +74,7 @@ public class HashTabList
 
     /**
      * Set a new footer to the tablist. (Require an update to see the changes)
+     *
      * @param footer The new footer text.
      */
     public void setFooter(String footer)
@@ -75,6 +83,8 @@ public class HashTabList
     }
 
     /**
+     * Set the value of a packet field.
+     *
      * @param packetClass The class of the packet.
      * @param key The declared field name
      * @param value The new value to set to the field
