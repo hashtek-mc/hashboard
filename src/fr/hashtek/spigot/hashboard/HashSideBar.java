@@ -1,10 +1,9 @@
-package fr.hashktek.spigot.hashboard;
+package fr.hashtek.spigot.hashboard;
 
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 
 import java.util.HashMap;
-import java.util.Optional;
 import java.util.Set;
 
 public class HashSideBar

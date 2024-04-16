@@ -1,8 +1,8 @@
-package fr.hashktek.spigot.hashboard;
+package fr.hashtek.spigot.hashboard;
 
-import fr.hashktek.spigot.hashboard.exceptions.AlreadyInTeamException;
-import fr.hashktek.spigot.hashboard.exceptions.StrangeException;
-import fr.hashktek.spigot.hashboard.exceptions.TeamSizeException;
+import fr.hashtek.spigot.hashboard.exceptions.AlreadyInTeamException;
+import fr.hashtek.spigot.hashboard.exceptions.StrangeException;
+import fr.hashtek.spigot.hashboard.exceptions.TeamSizeException;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Team;
 
@@ -28,7 +28,7 @@ public class HashTeam
      * @param tablistPriority The priority of the team in the tablist.
      * @param prefix The prefix of the team.
      * @param suffix The suffix of the team.
-     * @param teamSize The team size.
+     * @param teamSize The team size. Set to 0 for no size.
      */
     public HashTeam(int tablistPriority, String prefix, String suffix, int teamSize)
     {
@@ -69,9 +69,9 @@ public class HashTeam
     {
         UUID playerUUID = player.getUniqueId();
 
-        if (this.getLength() == teamSize)
+        if (this.getLength() == this.teamSize && this.teamSize > 0)
             throw new TeamSizeException("The team '" + this.tablistPriority + "' is full.");
-        else if (this.getLength() > teamSize)
+        else if (this.getLength() > this.teamSize && this.teamSize > 0)
             throw new StrangeException("The team '" + this.tablistPriority + "' is more than full. (WTF ?)");
 
         if (this.has(playerUUID))

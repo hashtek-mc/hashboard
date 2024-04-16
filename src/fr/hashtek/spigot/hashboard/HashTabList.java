@@ -1,6 +1,6 @@
-package fr.hashktek.spigot.hashboard;
+package fr.hashtek.spigot.hashboard;
 
-import fr.hashktek.spigot.hashboard.exceptions.StrangeException;
+import fr.hashtek.spigot.hashboard.exceptions.StrangeException;
 import net.minecraft.server.v1_8_R3.ChatComponentText;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;

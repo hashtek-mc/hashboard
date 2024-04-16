@@ -1,4 +1,4 @@
-package fr.hashktek.spigot.hashboard;
+package fr.hashtek.spigot.hashboard;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
