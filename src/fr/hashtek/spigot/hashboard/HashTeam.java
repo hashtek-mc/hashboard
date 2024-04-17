@@ -1,6 +1,7 @@
 package fr.hashtek.spigot.hashboard;
 
 import fr.hashtek.spigot.hashboard.exceptions.AlreadyInTeamException;
+import fr.hashtek.spigot.hashboard.exceptions.NoBoardSetException;
 import fr.hashtek.spigot.hashboard.exceptions.StrangeException;
 import fr.hashtek.spigot.hashboard.exceptions.TeamSizeException;
 import org.bukkit.entity.Player;
@@ -22,7 +23,7 @@ import java.util.UUID;
 public class HashTeam
 {
 
-    private Team boardTeam;
+    private Team boardTeam = null;
 
     private final ArrayList<UUID> playersUUID;
 
@@ -140,6 +141,20 @@ public class HashTeam
     public void setBoard(HashBoard board)
     {
         this.boardTeam = board.registerTeam(this);
+    }
+
+    /**
+     * Allow friendly fire in the team.
+     *
+     * @param isAllowed {@code true} if the players of the team can fight with each other,
+     *                  {@code false} otherwise.
+     * @throws NoBoardSetException If no board has been set.
+     */
+    public void setFriendlyFire(boolean isAllowed) throws NoBoardSetException
+    {
+        if (this.boardTeam == null)
+            throw new NoBoardSetException("No board has been set to this team.");
+        this.boardTeam.setAllowFriendlyFire(isAllowed);
     }
 
     /**
