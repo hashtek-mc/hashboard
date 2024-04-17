@@ -23,7 +23,7 @@ HashBoard board = new HashBoard();
 ### Création d'une équipe
 Pour créer une équipe, il vous faudra [créer une instance d'HashBoard](#-pour-commencer).
 
-Pour créer une équipe, il faudra renseigner:
+Pour créer une équipe, il faudra renseigner :
 1. La priorité de l'équipe.
 2. Le préfix de l'équipe.
 3. Le suffix de l'équipe.
@@ -81,7 +81,7 @@ sidebar.flush(); // Retire toutes les lignes de la sidebar.
 
 ### Création d'une tablist
 > [!warning]
-> N'oubliez pas de mettre à jour votre tablist après avoir définit votre
+> N'oubliez pas de mettre à jour votre tablist après avoir définit votre 
 > header et/ou votre footer pour que les modifications soient prises en compte.
 
 ```java
