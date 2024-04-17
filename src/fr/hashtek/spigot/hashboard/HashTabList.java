@@ -7,6 +7,8 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -16,6 +18,7 @@ import java.util.Collection;
 public class HashTabList
 {
 
+    private final ArrayList<Player> defaultPlayers = new ArrayList<Player>();
     private final PacketPlayOutPlayerListHeaderFooter packet;
     private String header;
     private String footer;
@@ -30,7 +33,52 @@ public class HashTabList
     }
 
     /**
+     * Add a player to the tablist as a default player.
+     * A default player is a player that, at each call of the {@link HashTabList#update()} method,
+     * will have his tablist updated.
+     * A player can be set as default with the method {@link HashTabList#addDefaultPlayers addDefaultPlayers}.
+     *
+     * @param players The players to add to the tablist.
+     */
+    public void addDefaultPlayers(Player... players)
+    {
+        defaultPlayers.addAll(Arrays.asList(players));
+    }
+
+
+    /**
+     * Remove a player from the tablist as a default player.
+     * A default player is a player that, at each call of the {@link HashTabList#update()} method,
+     * will have his tablist updated.
+     * A player can be set as default with the method {@link HashTabList#addDefaultPlayers addDefaultPlayers}.
+     *
+     * @param players The players to remove from the tablist.
+     */
+    public void removeDefaultPlayers(Player... players)
+    {
+        defaultPlayers.removeAll(Arrays.asList(players));
+    }
+
+    /**
+     * Update the tablist for the default players.
+     * A default player is a player that, at each call of the {@link HashTabList#update()} method,
+     * will have his tablist updated.
+     * A player can be set as default with the method {@link HashTabList#addDefaultPlayers addDefaultPlayers}.
+     *
+     * @throws StrangeException If the impossible happen. (See the exception message)
+     */
+    public void update()
+            throws StrangeException
+    {
+        this.update(defaultPlayers);
+    }
+
+    /**
      * Update the tablist of the players.
+     * This function also update the tablist for the default players.
+     * A default player is a player that, at each call of the {@link HashTabList#update()} method,
+     * will have his tablist updated.
+     * A player can be set as default with the method {@link HashTabList#addDefaultPlayers addDefaultPlayers}.
      *
      * @param players The list of players to update the tablist to.
      * @throws StrangeException If the impossible happen. (See the exception message)
@@ -43,6 +91,10 @@ public class HashTabList
 
     /**
      * Update the tablist of the players.
+     * This function also update the tablist for the default players.
+     * A default player is a player that, at each call of the {@link HashTabList#update()} method,
+     * will have his tablist updated.
+     * A player can be set as default with the method {@link HashTabList#addDefaultPlayers addDefaultPlayers}.
      *
      * @param players The list of players to update the tablist to.
      * @throws StrangeException If the impossible happen. (See the exception message)
@@ -56,7 +108,10 @@ public class HashTabList
         this.setFieldValue(packetClass, "a", this.header);
         this.setFieldValue(packetClass, "b", this.footer);
 
+        this.update();
         for (Player player : players) {
+            if (defaultPlayers.contains(player))
+                continue;
             craftPlayer = ((CraftPlayer) player);
             craftPlayer.getHandle().playerConnection.sendPacket(this.packet);
         }
