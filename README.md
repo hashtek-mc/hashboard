@@ -1,40 +1,41 @@
-# `📋 HashBoard v0.0.2 - Guide d'utilisation`
+## 📋 HashBoard v0.0.3 - Guide d'utilisation
 
-## Description de la librairie
+### Description de la librairie
 Cette librairie est faîte pour les éléments suivants :
 - Création d'équipes *(Avec préfix / suffix)*
 - Création de Scoreboard *(SideBar)*
 - Création de Tablist *(Header + Footer)*
 
----
+## 📋 HashBoard
 
-## `HashBoard`
-
-### Prototype
+**Prototype**
 ```java
 HashBoard();
 ```
 
-### Description
-Classe principale permettant d'utiliser HashSideBar et HashTeam avec toutes leurs fonctionnalités.
+**Description**
 
----
+Classe principale permettant d'utiliser HashSideBar et HashTeam avec toutes leurs fonctionnalités.
 
 ## `HashSideBar`
 
-### Prototype
+**Prototype**
+
 ```java
 HashSideBar(HashBoard board);
 ```
 
-### Description
+**Description**
+
 Classe permettant de créer une sidebar. *(Le p'tit rectangle avec un fond noir sur le côté droite de l'écran du joueur)*
 
-### Paramètres
-`HashBoard board`: Une instance de la classe HashBoard.
-- `⚠️`  Il est fortement recommandé de n'avoir qu'une instance de HashBoard
+**Paramètres**
 
-### Exemple
+`HashBoard board`: Une instance de la classe HashBoard.
+> [!warning]
+> Il est fortement recommandé de n'avoir qu'une instance de HashBoard
+
+**Exemple**
 
 Pour ajouter un scoreboard *(appelé sidebar)*:
 ```java
@@ -59,6 +60,7 @@ sidebar
 ```
 
 Ce qui donne :
+
 ![image](https://github.com/hashtek-mc/hashboard/assets/83085376/61f3a353-b63f-4915-89b7-035e8248045b)
 
 Pour retirer des lignes du scoreboard *(appelé sidebar)*:
@@ -70,34 +72,38 @@ sidebar
     .clearLines(5, 11);
 ```
 
----
+## 👥 HashTeam
 
-## `HashTeam`
+**Prototype**
 
-### Prototype
 ```java
 HashTeam(int tablistPriority, String prefix, String suffix, int teamSize, HashBoard board);
 HashTeam(int tablistPriority, String prefix, String suffix, int teamSize);
 ```
 
-### Description
+**Description**
+
 Classe permettant de créer/gérer une équipe.
 
-### Paramètres
+**Paramètres**
+
 `int tablistPriority`: La priorité du joueur dans le scoreboard. *(Plus le nombre est élevé, plus la priorité est faible)*
 
 `String prefix`: Le préfixe de l'équipe. *(Ce qui sera affiché à gauche du pseudo du joueur.)*
-- `⚠️` Un préfixe ne peut contenir plus de 16 caractères.
+> [!warning]
+> Un préfixe ne peut contenir plus de 16 caractères.
 
 `String suffix`: Le suffixe de l'équipe. *(Ce qui sera affiché à droite du pseudo du joueur.)*
-- `⚠️` Un suffixe ne peut contenir plus de 16 caractères.
+> [!warning]
+> Un suffixe ne peut contenir plus de 16 caractères.
 
 `int teamSize`: La taille de l'équipe.
 
 `HashBoard board`: Une instance de la classe HashBoard.
-- `⚠️` Il est fortement recommandé de n'avoir qu'une instance de HashBoard
+> [!warning]
+> Il est fortement recommandé de n'avoir qu'une instance de HashBoard
 
-### Exemple
+**Exemple**
 
 Pour créer des équipes :
 ```java
@@ -121,11 +127,13 @@ blue.add(player2);
 ```
 
 En partant du principe que `player1` est le joueur nommé `Epitoch` et que `player2` est le joueur nommé `Zeynix`, le résultat sera :
+
 ![image](https://github.com/hashtek-mc/hashboard/assets/83085376/b3351b1e-e242-44bd-b44d-f4e76e8efbfc)
 ![image](https://github.com/hashtek-mc/hashboard/assets/83085376/02e53092-38b5-43ba-b27f-6ad4bfcf4625)
 ![image](https://github.com/hashtek-mc/hashboard/assets/83085376/848e487c-68c7-412b-94f9-56616c531b4f)
 
-`⚠️` Ajouter un joueur dans une équipe ne le retire pas de toutes les autres équipes. Il faut donc vérifier et retirer manuellement le joueur de son équipe actuelle pour qu'il ne soit pas présent dans plusieurs équipes à la fois.
+> [!warning]
+> Ajouter un joueur dans une équipe ne le retire pas de toutes les autres équipes. Il faut donc vérifier et retirer manuellement le joueur de son équipe actuelle pour qu'il ne soit pas présent dans plusieurs équipes à la fois.
 
 Pour retirer un joueur d'une équipe :
 ```java
@@ -137,19 +145,18 @@ Pour vérifier qu'un joueur appartient à une équipe :
 boolean has = red.has(player); // true si le joueur est dans l'équipe rouge, autrement false
 ```
 
----
+## 🪧 HashTabList
 
-## `HashTabList`
-
-### Prototype
+**Prototype**
 ```java
 HashTabList();
 ```
 
-### Description
+**Description**
+
 Classe permettant de gérer le header et le footer du tablist.
 
-### Exemple
+**Exemple**
 
 Pour définir un header et un footer :
 ```java
@@ -164,11 +171,13 @@ tablist.update(listOfPlayers);
 tablist.update(player1, player2, player3);
 ```
 Ce qui donne :
+
 ![image](https://github.com/hashtek-mc/hashboard/assets/83085376/6fd7988a-18e4-458f-914e-ca8e82bc18af)
 
 ---
 
-# `⚠️ RAPPEL DES WARNINGS`
-- Un préfix/suffix ne peut contenir que 16 caractères (codes couleurs inclut)
-- Avoir une seule instance de HashBoard permet de regrouper les sidebars et les teams en une seule classe. C'est pourquoi il est fortement recommandé de n'avoir qu'une seule instance de HashBoard.
-- Ajouter un joueur dans une équipe ne le retire pas automatiquement des autres équipes. Il faut donc le retirer manuellement des autres équipes pour qu'il ne soit présent que dans une seule équipe.
+> [!warning]
+> **RAPPEL DES WARNINGS**
+> - Un préfix/suffix ne peut contenir que 16 caractères (codes couleurs inclut)
+> - Avoir une seule instance de HashBoard permet de regrouper les sidebars et les teams en une seule classe. C'est pourquoi il est fortement recommandé de n'avoir qu'une seule instance de HashBoard.
+> - Ajouter un joueur dans une équipe ne le retire pas automatiquement des autres équipes. Il faut donc le retirer manuellement des autres équipes pour qu'il ne soit présent que dans une seule équipe.
