@@ -6,7 +6,7 @@ plugins {
 group = 'fr.hashtek.spigot'
 version = 'D0.0.4-SNAPSHOT'
 
-def hashrc = '/home/l1x/Hashtek/builds'
+def hashrc = 'D:\\Personnel\\Informatique\\Projets\\Hashtek\\.builds'
 def libsFolder = 'libs'
 
 repositories {
