@@ -1,0 +1,4 @@
+name: '${name}'
+author: Nathan J.
+version: '${version}'
+main: fr.hashtek.spigot.hashboard
