@@ -1,4 +1,4 @@
-package fr.hashtek.spigot.hashboard.manager;
+package fr.hashtek.spigot.hashboard.packets;
 
 import java.lang.reflect.Field;
 

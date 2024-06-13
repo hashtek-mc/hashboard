@@ -1,4 +1,4 @@
-package fr.hashtek.spigot.hashboard.enums;
+package fr.hashtek.spigot.hashboard.objectives;
 
 public enum ObjectiveMode
 {
