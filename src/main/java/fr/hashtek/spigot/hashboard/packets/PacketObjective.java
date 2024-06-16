@@ -1,6 +1,8 @@
 package fr.hashtek.spigot.hashboard.packets;
 
-public class PacketObjective
+import fr.hashtek.hashutils.Reflection;
+
+public class PacketObjective extends Reflection
 {
 
 
