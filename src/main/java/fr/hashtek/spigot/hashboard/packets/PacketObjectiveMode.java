@@ -1,6 +1,6 @@
-package fr.hashtek.spigot.hashboard.objectives;
+package fr.hashtek.spigot.hashboard.packets;
 
-public enum ObjectiveMode
+public enum PacketObjectiveMode
 {
 
     CREATE(0),
@@ -10,7 +10,7 @@ public enum ObjectiveMode
 
     private final int mode;
 
-    ObjectiveMode(int mode)
+    PacketObjectiveMode(int mode)
     {
         this.mode = mode;
     }

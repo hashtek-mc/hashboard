@@ -1,8 +1,10 @@
 package fr.hashtek.spigot.hashboard.packets;
 
+import fr.hashtek.hashutils.Reflection;
+
 import java.lang.reflect.Field;
 
-public class PacketManager
+public class PacketManager extends Reflection
 {
 
     public static void setField(Object packet, String fieldName, Object value)

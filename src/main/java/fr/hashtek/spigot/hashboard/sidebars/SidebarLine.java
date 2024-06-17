@@ -3,7 +3,7 @@ package fr.hashtek.spigot.hashboard.sidebars;
 /**
  * A sidebar line manager.
  */
-public class SidebarLine
+class SidebarLine
 {
 
     private final int index;
@@ -17,7 +17,7 @@ public class SidebarLine
      * @param index The index of the line.
      * @param value The value of the line.
      */
-    public SidebarLine(int index, String value)
+    SidebarLine(int index, String value)
     {
         this.index = index;
         this.previousValue = value;
