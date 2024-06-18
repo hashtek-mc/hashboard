@@ -16,7 +16,7 @@ public class Sidebar extends Reflection
 
 
     private final String id;
-    private final DisplayName displayName;
+    private final SidebarDisplayName displayName;
     private final ArrayList<SidebarLine> lines;
     private final HashMap<Player, Boolean> receivers;
 
@@ -34,7 +34,7 @@ public class Sidebar extends Reflection
         this.id = id;
         this.lines = new ArrayList<SidebarLine>();
         this.receivers = new HashMap<Player, Boolean>();
-        this.displayName = new DisplayName();
+        this.displayName = new SidebarDisplayName();
         this.packetObjectiveManager = new PacketObjectiveManager(this);
     }
 
@@ -137,23 +137,6 @@ public class Sidebar extends Reflection
         final Object packet = null;
 
         this.sendPacket(player, packet);
-    }
-
-    /**
-     * Get the player connection.
-     *
-     * @param player The player.
-     * @return The player connection.
-     * @throws Exception If an error has occurred with the NMS package.
-     */
-    private Object getPlayerConnection(Player player)
-            throws Exception
-    {
-        final Object craftPlayer = player.getClass()
-            .getMethod("getHandle").invoke(player);
-
-        return craftPlayer.getClass()
-            .getField("playerConnection").get(craftPlayer);
     }
 
 }
