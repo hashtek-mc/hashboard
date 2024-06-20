@@ -3,11 +3,13 @@
 ### Description de la librairie
 Cette librairie est faîte pour les éléments suivants :
 - Création d'équipes *(Avec préfix / suffix / taille)*
-- Création de Scoreboard *(SideBar)*
+- Création de Scoreboard *(Sidebar)*
 - Création de Tablist *(Header + Footer)*
 
 ## 🏁 Getting Started
 
+> [!information]
+> Les sidebars ainsi que les tablists utilisent les packets.
 
 ### Création d'une board
 Pour commencer, il faudra créer une board *(avec HashBoard)*.
@@ -17,7 +19,7 @@ import fr.hashtek.spigot.hashboard.HashBoard;
 HashBoard board = new HashBoard();
 ```
 
-> [!info]
+> [!information]
 > Cette instance d'HashBoard de gérer une équipe, une sidebar *(souvent appelé scoreboard par les joueurs)*, et une tablist.
 
 ### Création d'une équipe
