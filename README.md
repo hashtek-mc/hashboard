@@ -8,7 +8,7 @@ Cette librairie est faîte pour les éléments suivants :
 
 ## 🏁 Getting Started
 
-> [!information]
+> [!note]
 > Les sidebars ainsi que les tablists utilisent les packets.
 
 ### Création d'une board
@@ -19,7 +19,7 @@ import fr.hashtek.spigot.hashboard.HashBoard;
 HashBoard board = new HashBoard();
 ```
 
-> [!information]
+> [!note]
 > Cette instance d'HashBoard de gérer une équipe, une sidebar *(souvent appelé scoreboard par les joueurs)*, et une tablist.
 
 ### Création d'une équipe
