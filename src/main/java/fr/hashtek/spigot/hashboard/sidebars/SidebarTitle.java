@@ -3,16 +3,16 @@ package fr.hashtek.spigot.hashboard.sidebars;
 /**
  * A display name manager for the sidebar.
  */
-class SidebarDisplayName
+class SidebarTitle
 {
 
     private String title;
     private boolean hasChanged;
 
     /**
-     * Create a new display name.
+     * Create a new sidebar display name.
      */
-    public SidebarDisplayName()
+    public SidebarTitle()
     {
         this.title = null;
         this.hasChanged = false;
