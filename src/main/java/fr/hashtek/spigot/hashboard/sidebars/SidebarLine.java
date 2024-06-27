@@ -9,7 +9,7 @@ class SidebarLine
     private final int index;
     private String previousValue;
     private String value;
-    private boolean _hasBeenEdited;
+    private boolean hasChanged;
 
     /**
      * Create a new SidebarLine.
@@ -22,7 +22,7 @@ class SidebarLine
         this.index = index;
         this.previousValue = value;
         this.value = value;
-        this._hasBeenEdited = false;
+        this.hasChanged = false;
     }
 
     /**
@@ -34,7 +34,7 @@ class SidebarLine
     {
         this.previousValue = this.value;
         this.value = value;
-        this._hasBeenEdited = true;
+        this.hasChanged = true;
     }
 
     /**
@@ -42,9 +42,9 @@ class SidebarLine
      *
      * @return {@code true} if the value of the line has been edited, {@code false} otherwise.
      */
-    public boolean hasBeenEdited()
+    public boolean checkIfHasChanged()
     {
-        return this._hasBeenEdited;
+        return this.hasChanged;
     }
 
     /**
@@ -78,14 +78,12 @@ class SidebarLine
     }
 
     /**
-     * <b style="color: white; background-color: red">WARNING</b>
-     * <br>This is an internal method. You are NOT supposed to call this method by yourself.
-     * <br><br> Save the score.
+     * Validate the changes of the line.
      */
-    public void save()
+    public void validateChanges()
     {
         this.previousValue = this.value;
-        this._hasBeenEdited = false;
+        this.hasChanged = false;
     }
 
 }

@@ -7,6 +7,13 @@ import java.lang.reflect.Field;
 public class PacketManager extends Reflection
 {
 
+    /**
+     * Set a new value to a field.
+     *
+     * @param   packet      The packet instance.
+     * @param   fieldName   The field name to edit.
+     * @param   value       The new value to set.
+     */
     public static void setField(Object packet, String fieldName, Object value)
     {
         Field field = null;

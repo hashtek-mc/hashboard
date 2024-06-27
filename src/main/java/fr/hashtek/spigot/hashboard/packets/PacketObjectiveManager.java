@@ -14,8 +14,8 @@ public class PacketObjectiveManager extends PacketManager
     /**
      * Create a new packet manager for the objective.
      *
-     * @param sidebar The targeted sidebar.
-     * @throws Exception If an error has occurred with the NMS package.
+     * @param   sidebar     The targeted sidebar.
+     * @throws  Exception   If an error has occurred with the NMS package.
      */
     public PacketObjectiveManager(Sidebar sidebar)
             throws Exception

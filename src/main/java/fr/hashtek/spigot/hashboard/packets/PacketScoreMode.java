@@ -1,9 +1,15 @@
 package fr.hashtek.spigot.hashboard.packets;
 
+/**
+ * An enum that contains all the available modes for a score.
+ *
+ * <li>SET - <emphasis>Set a new score.</emphasis></li>
+ * <li>REMOVE - <emphasis>Remove a score.</emphasis></li>
+ */
 public enum PacketScoreMode
 {
 
-    CHANGE("CHANGE"),
+    SET("CHANGE"),
     REMOVE("REMOVE")
 
     ;
@@ -15,6 +21,11 @@ public enum PacketScoreMode
         this.mode = mode;
     }
 
+    /**
+     * Get the mode value.
+     *
+     * @return The mode value.
+     */
     public String get()
     {
         return mode;

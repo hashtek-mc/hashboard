@@ -1,5 +1,8 @@
 package fr.hashtek.spigot.hashboard.packets;
 
+/**
+ * An enum that contains all the available modes for an objective.
+ */
 public enum PacketObjectiveMode
 {
 
