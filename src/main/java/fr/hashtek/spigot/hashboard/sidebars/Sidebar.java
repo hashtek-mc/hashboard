@@ -3,6 +3,8 @@ package fr.hashtek.spigot.hashboard.sidebars;
 import fr.hashtek.hashutils.Reflection;
 import fr.hashtek.spigot.hashboard.packets.PacketObjectiveManager;
 import fr.hashtek.spigot.hashboard.packets.PacketObjectiveMode;
+import fr.hashtek.spigot.hashboard.packets.PacketScoreManager;
+import fr.hashtek.spigot.hashboard.packets.PacketScoreMode;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -16,26 +18,28 @@ public class Sidebar extends Reflection
 
 
     private final String id;
-    private final SidebarDisplayName displayName;
-    private final ArrayList<SidebarLine> lines;
+    private final SidebarTitle displayName;
+    private final HashMap<Integer, SidebarLine> lines;
     private final HashMap<Player, Boolean> receivers;
 
     private final PacketObjectiveManager packetObjectiveManager;
+    private final PacketScoreManager packetScoreManager;
 
     /**
      * Create a new sidebar.
      *
-     * @param id The unique identifier of the sidebar.
-     * @throws Exception If an error occurred with the NMS package.
+     * @param   id          The unique identifier of the sidebar.
+     * @throws  Exception   If an error occurred with the NMS package.
      */
     public Sidebar(String id)
             throws Exception
     {
         this.id = id;
-        this.lines = new ArrayList<SidebarLine>();
+        this.lines = new HashMap<Integer, SidebarLine>();
         this.receivers = new HashMap<Player, Boolean>();
-        this.displayName = new SidebarDisplayName();
+        this.displayName = new SidebarTitle();
         this.packetObjectiveManager = new PacketObjectiveManager(this);
+        this.packetScoreManager = new PacketScoreManager(this);
     }
 
     /**
@@ -56,8 +60,8 @@ public class Sidebar extends Reflection
     /**
      * Remove a receiver.
      *
-     * @param player    The receiver.
-     * @return          The sidebar itself.
+     * @param   player      The receiver.
+     * @return              The sidebar itself.
      */
     public Sidebar removeReceiver(Player player)
     {
@@ -81,6 +85,7 @@ public class Sidebar extends Reflection
             }
             this.updateScores(player);
         }
+        this.validateScores();
     }
 
     /**
@@ -134,9 +139,32 @@ public class Sidebar extends Reflection
     private void updateScores(Player player)
             throws Exception
     {
-        final Object packet = null;
+        Object removeScorePacket = null;
+        Object setScorePacket = null;
+        String previousValue = null;
+        String newValue = null;
+        int index = 0;
 
-        this.sendPacket(player, packet);
+        for (SidebarLine line : this.lines.values()) {
+            index = line.getIndex();
+            previousValue = line.getPreviousValue();
+            newValue = line.getValue();
+            removeScorePacket = this.packetScoreManager.PacketPlayOutScoreboardScore(PacketScoreMode.REMOVE, index, previousValue);
+            setScorePacket = this.packetScoreManager.PacketPlayOutScoreboardScore(PacketScoreMode.SET, index, newValue);
+            this.sendPacket(player, removeScorePacket);
+            this.sendPacket(player, setScorePacket);
+        }
+    }
+
+    /**
+     * Validate the modified lines.
+     */
+    private void validateScores()
+    {
+        for (SidebarLine line : this.lines.values()) {
+            if (line.checkIfHasChanged())
+                line.validateChanges();
+        }
     }
 
 }
