@@ -18,6 +18,11 @@ public enum PacketObjectiveMode
         this.mode = mode;
     }
 
+    /**
+     * Get the mode value.
+     *
+     * @return The mode value.
+     */
     public int getMode()
     {
         return this.mode;

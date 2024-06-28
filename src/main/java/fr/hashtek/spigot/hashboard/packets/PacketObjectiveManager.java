@@ -1,6 +1,6 @@
 package fr.hashtek.spigot.hashboard.packets;
 
-import fr.hashtek.spigot.hashboard.sidebars.Sidebar;
+import fr.hashtek.spigot.hashboard.sidebars.HashSidebar;
 
 import java.lang.reflect.Constructor;
 
@@ -14,13 +14,13 @@ public class PacketObjectiveManager extends PacketManager
     /**
      * Create a new packet manager for the objective.
      *
-     * @param   sidebar     The targeted sidebar.
+     * @param   hashSidebar     The targeted sidebar.
      * @throws  Exception   If an error has occurred with the NMS package.
      */
-    public PacketObjectiveManager(Sidebar sidebar)
+    public PacketObjectiveManager(HashSidebar hashSidebar)
             throws Exception
     {
-        this.sidebarId = sidebar.getId();
+        this.sidebarId = hashSidebar.getId();
         this.packetPlayOutScoreboardObjective = this.getNMSClass("PacketPlayOutScoreboardObjective").getConstructor();
         this.packetPlayOutScoreboardDisplayObjective = this.getNMSClass("PacketPlayOutScoreboardDisplayObjective").getConstructor();
     }

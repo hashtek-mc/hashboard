@@ -10,6 +10,7 @@ class SidebarLine
     private String previousValue;
     private String value;
     private boolean hasChanged;
+    private boolean deleted;
 
     /**
      * Create a new SidebarLine.
@@ -23,6 +24,7 @@ class SidebarLine
         this.previousValue = value;
         this.value = value;
         this.hasChanged = false;
+        this.deleted = false;
     }
 
     /**
@@ -38,6 +40,14 @@ class SidebarLine
     }
 
     /**
+     * Remove the line.
+     */
+    public void delete()
+    {
+        this.deleted = true;
+    }
+
+    /**
      * Check if the line has been modified or not.
      *
      * @return {@code true} if the value of the line has been edited, {@code false} otherwise.
@@ -45,6 +55,14 @@ class SidebarLine
     public boolean checkIfHasChanged()
     {
         return this.hasChanged;
+    }
+
+    /**
+     * @return {@code true} if the line has been deleted, {@code false} otherwise.
+     */
+    public boolean checkIfDeleted()
+    {
+        return this.deleted;
     }
 
     /**

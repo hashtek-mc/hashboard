@@ -1,6 +1,6 @@
 package fr.hashtek.spigot.hashboard.packets;
 
-import fr.hashtek.spigot.hashboard.sidebars.Sidebar;
+import fr.hashtek.spigot.hashboard.sidebars.HashSidebar;
 
 import java.lang.reflect.Constructor;
 
@@ -17,13 +17,13 @@ public class PacketScoreManager extends PacketManager
     /**
      * Create a new instance of the PacketScoreManager.
      *
-     * @param sidebar The sidebar that will be managed by this PacketScoreManager.
+     * @param hashSidebar The sidebar that will be managed by this PacketScoreManager.
      * @throws Exception If an error occurred in the NMS package.
      */
-    public PacketScoreManager(Sidebar sidebar)
+    public PacketScoreManager(HashSidebar hashSidebar)
             throws Exception
     {
-        this.sidebarId = sidebar.getId();
+        this.sidebarId = hashSidebar.getId();
         this.packetPlayOutScoreboardScore = this.getNMSClass("PacketPlayOutScoreboardScore").getConstructor();
         this.enumScoreboardAction = this.getNMSClass("PacketPlayOutScoreboardScore.EnumScoreboardAction");
     }
@@ -41,7 +41,7 @@ public class PacketScoreManager extends PacketManager
             throws Exception
     {
         @SuppressWarnings("unchecked")
-        final Object modeValue = this.getEnumValue((Class<? extends Enum>) this.enumScoreboardAction, mode.get());
+        final Object modeValue = this.getEnumValue((Class<? extends Enum>) this.enumScoreboardAction, mode.getMode());
         final Object packet = this.packetPlayOutScoreboardScore.newInstance();
 
         setField(packet, "a", value);

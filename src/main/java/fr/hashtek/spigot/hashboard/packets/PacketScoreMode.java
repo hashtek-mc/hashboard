@@ -26,7 +26,7 @@ public enum PacketScoreMode
      *
      * @return The mode value.
      */
-    public String get()
+    public String getMode()
     {
         return mode;
     }
