@@ -1,5 +1,6 @@
-package fr.hashtek.spigot.hashboard.packets;
+package fr.hashtek.spigot.hashboard.packets.sidebars;
 
+import fr.hashtek.spigot.hashboard.packets.PacketManager;
 import fr.hashtek.spigot.hashboard.sidebars.HashSidebar;
 
 import java.lang.reflect.Constructor;
@@ -17,8 +18,8 @@ public class PacketScoreManager extends PacketManager
     /**
      * Create a new instance of the PacketScoreManager.
      *
-     * @param hashSidebar The sidebar that will be managed by this PacketScoreManager.
-     * @throws Exception If an error occurred in the NMS package.
+     * @param       hashSidebar     The sidebar that will be managed by this PacketScoreManager.
+     * @throws      Exception       If an error has occurred in the NMS package.
      */
     public PacketScoreManager(HashSidebar hashSidebar)
             throws Exception
@@ -29,13 +30,13 @@ public class PacketScoreManager extends PacketManager
     }
 
     /**
-     * Create a PacketPlayOutScoreboardScore to manage the scores of the scoreboard.
+     * Create a new PacketPlayOutScoreboardScore to manage the scores of the scoreboard.
      *
-     * @param mode Either to set the score or to remove it.
-     * @param index The index of the score. (Not important if the mode is REMOVE)
-     * @param value The value of the score.
-     * @return The corresponding PacketPlayOutScoreboardScore.
-     * @throws Exception If an error occurred in the NMS package.
+     * @param       mode        Either to set the score or to remove it.
+     * @param       index       The index of the score. (Not important if the mode is REMOVE)
+     * @param       value       The value of the score.
+     * @return                  The corresponding PacketPlayOutScoreboardScore.
+     * @throws      Exception   If an error has occurred in the NMS package.
      */
     public Object PacketPlayOutScoreboardScore(PacketScoreMode mode, int index, String value)
             throws Exception
