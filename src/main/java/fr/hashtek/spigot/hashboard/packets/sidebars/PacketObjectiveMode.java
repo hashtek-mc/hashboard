@@ -1,4 +1,4 @@
-package fr.hashtek.spigot.hashboard.packets;
+package fr.hashtek.spigot.hashboard.packets.sidebars;
 
 /**
  * An enum that contains all the available modes for an objective.

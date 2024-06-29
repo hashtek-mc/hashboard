@@ -1,5 +1,6 @@
-package fr.hashtek.spigot.hashboard.packets;
+package fr.hashtek.spigot.hashboard.packets.sidebars;
 
+import fr.hashtek.spigot.hashboard.packets.PacketManager;
 import fr.hashtek.spigot.hashboard.sidebars.HashSidebar;
 
 import java.lang.reflect.Constructor;

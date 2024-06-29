@@ -1,10 +1,10 @@
 package fr.hashtek.spigot.hashboard.sidebars;
 
 import fr.hashtek.hashutils.Reflection;
-import fr.hashtek.spigot.hashboard.packets.PacketObjectiveManager;
-import fr.hashtek.spigot.hashboard.packets.PacketObjectiveMode;
-import fr.hashtek.spigot.hashboard.packets.PacketScoreManager;
-import fr.hashtek.spigot.hashboard.packets.PacketScoreMode;
+import fr.hashtek.spigot.hashboard.packets.sidebars.PacketObjectiveManager;
+import fr.hashtek.spigot.hashboard.packets.sidebars.PacketObjectiveMode;
+import fr.hashtek.spigot.hashboard.packets.sidebars.PacketScoreManager;
+import fr.hashtek.spigot.hashboard.packets.sidebars.PacketScoreMode;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -169,7 +169,7 @@ public class HashSidebar extends Reflection
     /**
      * Send the sidebar with all the modifications to every receiver.
      *
-     * @throws Exception If an error occurred in the NMS package.
+     * @throws Exception If an error has occurred in the NMS package.
      */
     public void update()
             throws Exception
