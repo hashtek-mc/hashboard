@@ -57,7 +57,7 @@ public class HashSidebar extends Reflection
 
     /**
      * Remove a receiver.
-     * WARNING - Removing a receiver will not remove the sidebar to the player, except if .
+     * WARNING - Removing a receiver will not remove the sidebar to the player.
      *
      * @param   player      The receiver.
      * @return              The sidebar itself.
@@ -181,7 +181,7 @@ public class HashSidebar extends Reflection
             }
             this.updateScores(player, false);
         }
-        this.validateScores();
+        this.validateModifications();
     }
 
     /**
@@ -263,7 +263,7 @@ public class HashSidebar extends Reflection
     /**
      * Validate the modified lines.
      */
-    private void validateScores()
+    private void validateModifications()
     {
         for (SidebarLine line : this.lines.values()) {
             if (line.checkIfHasChanged())
