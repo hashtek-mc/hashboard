@@ -1,9 +1,9 @@
 package fr.hashtek.spigot.hashboard.packets.teams;
 
 import fr.hashtek.spigot.hashboard.packets.PacketManager;
+import fr.hashtek.spigot.hashboard.teams.TeamColor;
 
 import java.lang.reflect.Constructor;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -18,7 +18,7 @@ public class PacketTeamManager extends PacketManager
 
     /**
      * Create a new instance of the PacketTeamManager. <br/>
-     * NOTE - Only one PacketTeamManager by team should be created.
+     * {@code NOTE} - Only one PacketTeamManager by team should be created.
      *
      * @param       teamId      The team id.
      * @throws      Exception   If an error has occurred in the NMS package.
@@ -33,11 +33,11 @@ public class PacketTeamManager extends PacketManager
     /**
      * Get the corresponding PacketPlayOutScoreboardTeam for creating / updating the team.<br/>
      * <br/>
-     * NOTE - If the {@code mode} is none of {@link PacketTeamMode#CREATE_TEAM} or {@link PacketTeamMode#UPDATE_TEAM_INFO}, then
+     * {@code NOTE} - If the {@code mode} is none of {@link PacketTeamMode#CREATE_TEAM} or {@link PacketTeamMode#UPDATE_TEAM_INFO}, then
      *          it is recommended to use either the {@link PacketTeamManager#PacketPlayOutScoreboardTeam(PacketTeamMode)}
      *          or the {@link PacketTeamManager#PacketPlayOutScoreboardTeam(PacketTeamMode, Collection)} depending on your needs.<br/>
      * <br/>
-     * WARNING - If you want to add / remove players to / from the team, it is recommended to use the
+     * {@code WARNING} - If you want to add / remove players to / from the team, it is recommended to use the
      *              {@link PacketTeamManager#PacketPlayOutScoreboardTeam(PacketTeamMode, Collection)}
      *              as this method will effectively add or remove the players in the list to / from the team.
      *
@@ -54,11 +54,11 @@ public class PacketTeamManager extends PacketManager
     public Object PacketPlayOutScoreboardTeam(
         PacketTeamMode mode,
         PacketTeamTagVisibility tagVisibility,
-        PacketTeamColor color,
+        TeamColor color,
         String prefix,
         String suffix,
         Collection<String> players,
-        PacketTeamFlags... flags
+        Collection<PacketTeamFlags> flags
     )
             throws Exception
     {
@@ -83,18 +83,18 @@ public class PacketTeamManager extends PacketManager
         PacketManager.setField(packet, "f", color.getCode());
         PacketManager.setField(packet, "g", players);
         PacketManager.setField(packet, "h", PacketTeamMode.CREATE_TEAM.getMode());
-        PacketManager.setField(packet, "i", Arrays.asList(flags));
+        PacketManager.setField(packet, "i", flags);
         return packet;
     }
 
     /**
      * Get the corresponding PacketPlayOutScoreboardTeam for adding / removing players from the team.<br/>
      * <br/>
-     * WARNING - If you want to create or update the team, it is recommended to use the
-     *              {@link PacketTeamManager#PacketPlayOutScoreboardTeam(PacketTeamMode, PacketTeamTagVisibility, PacketTeamColor, String, String, Collection, PacketTeamFlags...)}
+     * {@code WARNING} - If you want to create or update the team, it is recommended to use the
+     *              {@link PacketTeamManager#PacketPlayOutScoreboardTeam(PacketTeamMode, PacketTeamTagVisibility, TeamColor, String, String, Collection, Collection)}
      *              method instead of this one, as it will allow you to fully customize your team.<br/>
      * <br/>
-     * WARNING - If you want to delete the team, it is recommended to use the
+     * {@code WARNING} - If you want to delete the team, it is recommended to use the
      *              {@link PacketTeamManager#PacketPlayOutScoreboardTeam(PacketTeamMode)}
      *              method instead of this one.
      *
@@ -111,7 +111,7 @@ public class PacketTeamManager extends PacketManager
         switch (mode) {
             case CREATE_TEAM:
             case UPDATE_TEAM_INFO:
-                return this.PacketPlayOutScoreboardTeam(mode, PacketTeamTagVisibility.VISIBLE, PacketTeamColor.RESET, "", "", Collections.emptyList());
+                return this.PacketPlayOutScoreboardTeam(mode, PacketTeamTagVisibility.VISIBLE, TeamColor.RESET, "", "", Collections.emptyList(), Collections.emptyList());
             case DELETE_TEAM:
                 return this.PacketPlayOutScoreboardTeam(mode);
             default:
@@ -127,11 +127,11 @@ public class PacketTeamManager extends PacketManager
     /**
      * Get the corresponding PacketPlayOutScoreboardTeam for adding / removing players from the team.<br/>
      * <br/>
-     * WARNING - If you want to create or update the team, it is recommended to use the
-     *              {@link PacketTeamManager#PacketPlayOutScoreboardTeam(PacketTeamMode, PacketTeamTagVisibility, PacketTeamColor, String, String, Collection, PacketTeamFlags...)}
+     * {@code WARNING} - If you want to create or update the team, it is recommended to use the
+     *              {@link PacketTeamManager#PacketPlayOutScoreboardTeam(PacketTeamMode, PacketTeamTagVisibility, TeamColor, String, String, Collection, Collection)}
      *              method instead of this one, as it will allow you to fully customize your team.<br/>
      * <br/>
-     * WARNING - If you want to add / remove players to / from the team, it is recommended
+     * {@code WARNING} - If you want to add / remove players to / from the team, it is recommended
      *              to use the {@link PacketTeamManager#PacketPlayOutScoreboardTeam(PacketTeamMode, Collection)}
      *              as this method will effectively add or remove the players in the list to / from the team.
      *
@@ -147,7 +147,7 @@ public class PacketTeamManager extends PacketManager
         switch (mode) {
             case CREATE_TEAM:
             case UPDATE_TEAM_INFO:
-                return this.PacketPlayOutScoreboardTeam(mode, PacketTeamTagVisibility.VISIBLE, PacketTeamColor.RESET, "", "", Collections.emptyList());
+                return this.PacketPlayOutScoreboardTeam(mode, PacketTeamTagVisibility.VISIBLE, TeamColor.RESET, "", "", Collections.emptyList(), Collections.emptyList());
             case ADD_PLAYER:
             case REMOVE_PLAYER:
                 return this.PacketPlayOutScoreboardTeam(mode, Collections.emptyList());
