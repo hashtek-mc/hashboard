@@ -1,6 +1,6 @@
-package fr.hashtek.spigot.hashboard.packets.teams;
+package fr.hashtek.spigot.hashboard.teams;
 
-public enum PacketTeamColor
+public enum TeamColor
 {
 
     BLACK(0),
@@ -30,7 +30,7 @@ public enum PacketTeamColor
 
     private final int code;
 
-    PacketTeamColor(int code)
+    TeamColor(int code)
     {
         this.code = code;
     }
