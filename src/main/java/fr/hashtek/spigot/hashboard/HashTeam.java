@@ -3,7 +3,7 @@ package fr.hashtek.spigot.hashboard;
 import fr.hashtek.spigot.hashboard.exceptions.AlreadyInTeamException;
 import fr.hashtek.spigot.hashboard.exceptions.NoBoardSetException;
 import fr.hashtek.spigot.hashboard.exceptions.StrangeException;
-import fr.hashtek.spigot.hashboard.exceptions.TeamSizeException;
+import fr.hashtek.spigot.hashboard.exceptions.TeamFullException;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Team;
 
@@ -75,16 +75,16 @@ public class HashTeam
      *
      * @param player The player to add in the team
      * @throws AlreadyInTeamException If the player is already in the team.
-     * @throws TeamSizeException If the team is full
+     * @throws TeamFullException If the team is full
      * @throws StrangeException If the team is more than full. (WTF ?)
      */
-    public void add(Player player) throws AlreadyInTeamException, TeamSizeException, StrangeException
+    public void add(Player player) throws AlreadyInTeamException, TeamFullException, StrangeException
     {
         UUID playerUUID = player.getUniqueId();
 
         if (this.teamSize != 0) {
             if (this.getLength() == this.teamSize && this.teamSize > 0)
-                throw new TeamSizeException("The team '" + this.tablistPriority + "' is full.");
+                throw new TeamFullException("The team '" + this.tablistPriority + "' is full.");
             else if (this.getLength() > this.teamSize && this.teamSize > 0)
                 throw new StrangeException("The team '" + this.tablistPriority + "' is more than full. (WTF ?)");
         }
