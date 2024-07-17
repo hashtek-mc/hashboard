@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+/**
+ * A class that represent a team.
+ */
 public class HashTeam extends Reflection
 {
 
@@ -23,6 +26,14 @@ public class HashTeam extends Reflection
 
     private final TeamData teamData;
 
+    /**
+     * Create a new team.
+     *
+     * @param   id          The unique identifier of the team.
+     * @param   color       The color of the team.
+     * @param   size        The size of the team. (Set to 0 for a non-sized team)
+     * @throws  Exception   If an error occurred with the NMS package.
+     */
     public HashTeam(String id, TeamColor color, int size)
             throws Exception
     {
@@ -79,6 +90,14 @@ public class HashTeam extends Reflection
         return this;
     }
 
+    /**
+     * Add a player to the receivers list and send him the team's data using packets. <br/>
+     * {@code INFO} - A receiver is a player that will receive the team data
+     * when the {@link HashTeam#update} method is called.
+     *
+     * @param   player      The player to add to the receivers list.
+     * @throws  Exception   If an error occurred with the NMS package.
+     */
     public void addReceiver(Player player)
             throws Exception
     {
@@ -86,6 +105,15 @@ public class HashTeam extends Reflection
         this.create(player);
     }
 
+
+    /**
+     * Remove a player from the receivers list and remove the team's data using packets. <br/>
+     * {@code INFO} - A receiver is a player that will receive the team data
+     * when the {@link HashTeam#update} method is called.
+     *
+     * @param   player      The player to remove from the receivers list.
+     * @throws  Exception   If an error occurred with the NMS package.
+     */
     public void removeReceiver(Player player)
             throws Exception
     {
@@ -93,6 +121,11 @@ public class HashTeam extends Reflection
         this.delete(player);
     }
 
+    /**
+     * Send the packets to update the team.
+     *
+     * @throws  Exception    If an error occurred with the NMS package.
+     */
     public void update()
             throws Exception
     {
@@ -106,6 +139,12 @@ public class HashTeam extends Reflection
         this.teamData.validateChanges();
     }
 
+    /**
+     * Send the packets to update the team's data to a specific player.
+     *
+     * @param   player      The player to send the packets.
+     * @throws  Exception   If an error occurred with the NMS package.
+     */
     private void update(Player player)
             throws Exception
     {
@@ -120,6 +159,12 @@ public class HashTeam extends Reflection
             this.updateTeamInformation(player);
     }
 
+    /**
+     * Send the packets to a player to update the added players to the team.
+     *
+     * @param   player      The player to send the packets.
+     * @throws  Exception   If an error occurred with the NMS package.
+     */
     private void updateAddedPlayers(Player player)
             throws Exception
     {
@@ -128,6 +173,12 @@ public class HashTeam extends Reflection
         this.sendPacket(player, packet);
     }
 
+    /**
+     * Send the packets to a player to update the removed players from the team.
+     *
+     * @param   player      The player to send the packets.
+     * @throws  Exception   If an error occurred with the NMS package.
+     */
     private void updateRemovedPlayers(Player player)
             throws Exception
     {
@@ -137,6 +188,12 @@ public class HashTeam extends Reflection
 
     }
 
+    /**
+     * Send the packets to a specific player to update the team's data.
+     *
+     * @param   player      The player to send the packets.
+     * @throws  Exception   If an error occurred with the NMS package.
+     */
     private void updateTeamInformation(Player player)
             throws Exception
     {
@@ -154,6 +211,12 @@ public class HashTeam extends Reflection
         this.sendPacket(player, packet);
     }
 
+    /**
+     * Send the packets to a specific player to create the team.
+     *
+     * @param   player      The player to send the packets.
+     * @throws  Exception   If an error occurred with the NMS package.
+     */
     private void create(Player player)
             throws Exception
     {
@@ -172,6 +235,12 @@ public class HashTeam extends Reflection
         this.sendPacket(player, packet);
     }
 
+    /**
+     * Send the packets to a specific player to delete the team.
+     *
+     * @param   player      The player to send the packets.
+     * @throws  Exception   If an error occurred with the NMS package.
+     */
     private void delete(Player player)
             throws Exception
     {
