@@ -157,7 +157,7 @@ public class TeamData
      */
     public void enableFlag(PacketTeamFlags flag)
     {
-        this.flags |= flag.getFlag();
+        this.flags |= flag.getByte();
     }
 
     /**
@@ -167,7 +167,7 @@ public class TeamData
      */
     public void disableFlag(PacketTeamFlags flag)
     {
-        this.flags &= (byte) ~flag.getFlag();
+        this.flags &= (byte) ~flag.getByte();
     }
 
     /**
