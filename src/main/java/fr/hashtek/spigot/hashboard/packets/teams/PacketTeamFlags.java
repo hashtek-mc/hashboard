@@ -8,16 +8,16 @@ public enum PacketTeamFlags
 
     ;
 
-    private final byte flag;
+    private final byte bit;
 
-    PacketTeamFlags(byte flag)
+    PacketTeamFlags(byte bit)
     {
-        this.flag = flag;
+        this.bit = bit;
     }
 
-    public byte getFlag()
+    public byte getByte()
     {
-        return this.flag;
+        return this.bit;
     }
 
 }
