@@ -22,7 +22,7 @@ public class PacketScoreManager extends PacketManager
      * @throws      Exception       If an error has occurred in the NMS package.
      */
     public PacketScoreManager(HashSidebar hashSidebar)
-            throws Exception
+        throws Exception
     {
         this.sidebarId = hashSidebar.getId();
         this.packetPlayOutScoreboardScore = this.getNMSClass("PacketPlayOutScoreboardScore").getConstructor();
@@ -39,7 +39,7 @@ public class PacketScoreManager extends PacketManager
      * @throws      Exception   If an error has occurred in the NMS package.
      */
     public Object PacketPlayOutScoreboardScore(PacketScoreMode mode, int index, String value)
-            throws Exception
+        throws Exception
     {
         @SuppressWarnings("unchecked")
         final Object modeValue = this.getEnumValue((Class<? extends Enum>) this.enumScoreboardAction, mode.getMode());

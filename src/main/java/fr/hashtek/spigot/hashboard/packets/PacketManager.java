@@ -16,7 +16,7 @@ public class PacketManager extends Reflection
      */
     public static void setField(Object packet, String fieldName, Object value)
     {
-        Field field = null;
+        Field field;
 
         try {
             field = packet.getClass().getDeclaredField(fieldName);

@@ -25,7 +25,7 @@ public class PacketTeamManager extends PacketManager
      * @throws      Exception   If an error has occurred in the NMS package.
      */
     public PacketTeamManager(String teamId)
-            throws Exception
+        throws Exception
     {
         this.teamId = teamId;
         this.packetPlayOutScoreboardTeam = this.getNMSClass("PacketPlayOutScoreboardTeam").getConstructor();
@@ -61,7 +61,7 @@ public class PacketTeamManager extends PacketManager
         Collection<String> players,
         byte flagsMask
     )
-            throws Exception
+        throws Exception
     {
         final Object packet;
 
@@ -141,7 +141,7 @@ public class PacketTeamManager extends PacketManager
      * @throws      Exception       If an error has occurred in the NMS package.
      */
     public Object PacketPlayOutScoreboardTeam(PacketTeamMode mode)
-            throws Exception
+        throws Exception
     {
         final Object packet = this.packetPlayOutScoreboardTeam.newInstance();
 

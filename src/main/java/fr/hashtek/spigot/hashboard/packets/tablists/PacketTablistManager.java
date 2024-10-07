@@ -15,7 +15,7 @@ public class PacketTablistManager extends PacketManager
      * @throws Exception If an error has occurred in the NMS package.
      */
     public PacketTablistManager()
-            throws Exception
+        throws Exception
     {
         this.packetPlayOutPlayerListHeaderFooter = this.getNMSClass("PacketPlayOutPlayerListHeaderFooter").getConstructor();
     }
@@ -29,7 +29,7 @@ public class PacketTablistManager extends PacketManager
      * @throws Exception If an error has occurred in the NMS package.
      */
     public Object PacketPlayOutPlayerListHeaderFooter(String header, String footer)
-            throws Exception
+        throws Exception
     {
         final Object packet = this.packetPlayOutPlayerListHeaderFooter.newInstance();
 

@@ -48,9 +48,9 @@ public class HashSidebar extends Reflection
      */
     public HashSidebar addReceiver(Player player)
     {
-        if (this.receivers.containsKey(player))
+        if (this.receivers.containsKey(player)) {
             return this;
-
+        }
         this.receivers.put(player, false);
         return this;
     }
@@ -65,7 +65,6 @@ public class HashSidebar extends Reflection
     public HashSidebar removeReceiver(Player player)
     {
         this.receivers.remove(player);
-
         return this;
     }
 
@@ -108,8 +107,9 @@ public class HashSidebar extends Reflection
      */
     public HashSidebar setLines(String value, int... indexes)
     {
-        for (int index : indexes)
+        for (int index : indexes) {
             this.setLine(index, value);
+        }
         return this;
     }
 
@@ -124,8 +124,9 @@ public class HashSidebar extends Reflection
      */
     public HashSidebar setLines(String value, int from, int to)
     {
-        for (int index = from; index <= to; index++)
+        for (int index = from; index <= to; index++) {
             this.setLine(index, value);
+        }
         return this;
     }
 
@@ -138,31 +139,35 @@ public class HashSidebar extends Reflection
      */
     public HashSidebar clearLine(int index)
     {
-        SidebarLine line = this.lines.get(index);
+        final SidebarLine line = this.lines.get(index);
 
-        if (line != null)
+        if (line != null) {
             line.delete();
+        }
         return this;
     }
 
     public HashSidebar clearLines()
     {
-        for (SidebarLine line : this.lines.values())
+        for (SidebarLine line : this.lines.values()) {
             this.clearLine(line.getIndex());
+        }
         return this;
     }
 
     public HashSidebar clearLines(int from, int to)
     {
-        for (int index = from; index <= to; index++)
+        for (int index = from; index <= to; index++) {
             this.clearLine(index);
+        }
         return this;
     }
 
     public HashSidebar clearLines(int... indexes)
     {
-        for (int index : indexes)
+        for (int index : indexes) {
             this.clearLine(index);
+        }
         return this;
     }
 
@@ -172,7 +177,7 @@ public class HashSidebar extends Reflection
      * @throws Exception If an error has occurred in the NMS package.
      */
     public void update()
-            throws Exception
+        throws Exception
     {
         for (Player player : this.receivers.keySet()) {
             if (!this.receivers.get(player)) {
@@ -201,7 +206,7 @@ public class HashSidebar extends Reflection
      * @throws  Exception   If an error has occurred with the NMS package.
      */
     private void create(Player player)
-            throws Exception
+        throws Exception
     {
         final Object createObjectivePacket = this.packetObjectiveManager.PacketPlayOutScoreboardObjective(PacketObjectiveMode.CREATE, this.title.get());
         final Object setDisplaySlotPacket = this.packetObjectiveManager.PacketPlayOutScoreboardDisplayObjective();
@@ -219,7 +224,7 @@ public class HashSidebar extends Reflection
      * @throws  Exception   If an error has occurred with the NMS package.
      */
     private void delete(Player player)
-            throws Exception
+        throws Exception
     {
         final Object deleteObjectivePacket = this.packetObjectiveManager.PacketPlayOutScoreboardObjective(PacketObjectiveMode.DELETE, null);
 
@@ -235,17 +240,18 @@ public class HashSidebar extends Reflection
      * @throws  Exception       If an error has occurred with the NMS package.
      */
     private void updateScores(Player player, boolean forceUpdate)
-            throws Exception
+        throws Exception
     {
-        Object removeScorePacket = null;
-        Object setScorePacket = null;
-        String previousValue = null;
-        String newValue = null;
-        int index = 0;
+        Object removeScorePacket;
+        Object setScorePacket;
+        String previousValue;
+        String newValue;
+        int index;
 
         for (SidebarLine line : this.lines.values()) {
-            if (!forceUpdate && (!line.checkIfHasChanged() || !line.checkIfDeleted()))
+            if (!forceUpdate && (!line.hasChanged() || !line.isDeleted())) {
                 continue;
+            }
 
             index = line.getIndex();
             previousValue = line.getPreviousValue();
@@ -255,8 +261,9 @@ public class HashSidebar extends Reflection
             setScorePacket = this.packetScoreManager.PacketPlayOutScoreboardScore(PacketScoreMode.SET, index, newValue);
 
             this.sendPacket(player, removeScorePacket);
-            if (!line.checkIfDeleted())
+            if (!line.isDeleted()) {
                 this.sendPacket(player, setScorePacket);
+            }
         }
     }
 
@@ -266,8 +273,9 @@ public class HashSidebar extends Reflection
     private void validateModifications()
     {
         for (SidebarLine line : this.lines.values()) {
-            if (line.checkIfHasChanged())
+            if (line.hasChanged()) {
                 line.validateChanges();
+            }
         }
     }
 

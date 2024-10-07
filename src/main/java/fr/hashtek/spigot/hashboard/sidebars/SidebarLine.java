@@ -52,7 +52,7 @@ class SidebarLine
      *
      * @return {@code true} if the value of the line has been edited, {@code false} otherwise.
      */
-    public boolean checkIfHasChanged()
+    public boolean hasChanged()
     {
         return this.hasChanged;
     }
@@ -60,7 +60,7 @@ class SidebarLine
     /**
      * @return {@code true} if the line has been deleted, {@code false} otherwise.
      */
-    public boolean checkIfDeleted()
+    public boolean isDeleted()
     {
         return this.deleted;
     }

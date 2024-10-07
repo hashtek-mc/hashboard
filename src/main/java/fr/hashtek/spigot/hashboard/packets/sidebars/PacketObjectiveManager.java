@@ -19,7 +19,7 @@ public class PacketObjectiveManager extends PacketManager
      * @throws  Exception   If an error has occurred with the NMS package.
      */
     public PacketObjectiveManager(HashSidebar hashSidebar)
-            throws Exception
+        throws Exception
     {
         this.sidebarId = hashSidebar.getId();
         this.packetPlayOutScoreboardObjective = this.getNMSClass("PacketPlayOutScoreboardObjective").getConstructor();
@@ -35,15 +35,16 @@ public class PacketObjectiveManager extends PacketManager
      * @return                  The created (or got) packet of the objective, ready to be sent.
      */
     public Object PacketPlayOutScoreboardObjective(PacketObjectiveMode mode, String displayName)
-            throws Exception
+        throws Exception
     {
         final Object packet = this.packetPlayOutScoreboardObjective.newInstance();
 
         PacketManager.setField(packet, "a", this.sidebarId);
         PacketManager.setField(packet, "d", mode);
 
-        if (displayName == null)
+        if (displayName == null) {
             displayName = "";
+        }
 
         switch (mode) {
             case CREATE:
@@ -63,7 +64,7 @@ public class PacketObjectiveManager extends PacketManager
      * @throws Exception    If an error has occurred with the NMS package.
      */
     public Object PacketPlayOutScoreboardDisplayObjective()
-            throws Exception
+        throws Exception
     {
         final Object packet = this.packetPlayOutScoreboardDisplayObjective.newInstance();
 

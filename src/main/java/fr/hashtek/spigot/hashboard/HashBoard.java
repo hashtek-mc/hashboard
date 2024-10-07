@@ -7,6 +7,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
 
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * HashBoard is a class that allow you to manage and customize:
@@ -18,6 +19,7 @@ import java.util.Collection;
 public class HashBoard
 {
 
+    private final ScoreboardManager manager;
     private final Scoreboard scoreboard;
 
 
@@ -26,8 +28,8 @@ public class HashBoard
      */
     public HashBoard()
     {
-        ScoreboardManager manager = Bukkit.getScoreboardManager();
-
+        this.manager = Bukkit.getScoreboardManager();
+        assert manager != null : "Bukkit Scoreboard manager is null.";
         this.scoreboard = manager.getNewScoreboard();
     }
 
@@ -55,7 +57,7 @@ public class HashBoard
         team.setPrefix(hashTeam.getPrefix());
         team.setSuffix(hashTeam.getSuffix());
         hashTeam.getPlayersUUID().forEach(
-            uuid -> team.addEntry(Bukkit.getPlayer(uuid).getName())
+            uuid -> team.addEntry(Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName())
         );
 
         return team;
@@ -68,8 +70,9 @@ public class HashBoard
      */
     public void setToPlayers(Player... players)
     {
-        for (Player player : players)
+        for (Player player : players) {
             player.setScoreboard(scoreboard);
+        }
     }
 
     /**

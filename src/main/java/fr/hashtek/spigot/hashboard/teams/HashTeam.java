@@ -4,8 +4,6 @@ import fr.hashtek.hashutils.Reflection;
 import fr.hashtek.spigot.hashboard.exceptions.AlreadyInTeamException;
 import fr.hashtek.spigot.hashboard.exceptions.NotInTeamException;
 import fr.hashtek.spigot.hashboard.exceptions.TeamFullException;
-//import fr.hashtek.spigot.hashboard.packets.teams.;
-import fr.hashtek.spigot.hashboard.packets.teams.PacketTeamFlags;
 import fr.hashtek.spigot.hashboard.packets.teams.PacketTeamManager;
 import fr.hashtek.spigot.hashboard.packets.teams.PacketTeamMode;
 import org.bukkit.entity.Player;
