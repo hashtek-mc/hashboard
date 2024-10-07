@@ -1,9 +1,17 @@
-*.idea
-*.vscode
-*.eclipse
-*.iml
-out
-gradle/
+# .gitignore for HashBoard project
+
+# Gradle stuff
 .gradle/
-gradlew
-gradlew.bat
+build/
+
+# Eclipse stuff
+classpath
+.project
+.settings/
+
+# IntelliJ stuff
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
