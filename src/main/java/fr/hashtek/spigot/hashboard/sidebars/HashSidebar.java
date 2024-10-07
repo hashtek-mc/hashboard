@@ -30,7 +30,7 @@ public class HashSidebar extends Reflection
      * @throws  Exception   If an error occurred with the NMS package.
      */
     public HashSidebar(String id)
-            throws Exception
+        throws Exception
     {
         this.id = id;
         this.lines = new HashMap<Integer, SidebarLine>();
